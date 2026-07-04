@@ -9,6 +9,23 @@ export default function Les06() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(0);
 
+  useGSAP(
+    () => {
+      gsap.from(".box", { opacity: 0, y: 30, stagger: 0.1, duration: 0.6 });
+    },
+    {
+      scope: containerRef,
+      dependencies: [],
+    },
+  );
+
+  useGSAP(
+    () => {
+      gsap.fromTo(".counter", { scale: 1.6 }, { scale: 1, duration: 0.3 });
+    },
+    { scope: containerRef, dependencies: [count] },
+  );
+
   // TODO 1: gebruik useGSAP() met { scope: containerRef, dependencies: [] }
   // en animeer daarbinnen alle elementen met class ".box":
   //   gsap.from(".box", { opacity: 0, y: 30, stagger: 0.1, duration: 0.6 })
@@ -26,9 +43,8 @@ export default function Les06() {
       <section className={styles.info}>
         <h2 className={styles.infoHeading}>Belangrijk</h2>
         <p>
-          Dit is de les die je het vaakst gebruikt. Vanaf hier gebruiken we
-          in plaats van <code>useEffect</code> de <code>useGSAP()</code>{" "}
-          hook uit het pakket <code>@gsap/react</code>. Installeer met:{" "}
+          Dit is de les die je het vaakst gebruikt. Vanaf hier gebruiken we in plaats van <code>useEffect</code> de{" "}
+          <code>useGSAP()</code> hook uit het pakket <code>@gsap/react</code>. Installeer met:{" "}
           <code>npm install @gsap/react</code>
         </p>
 
@@ -36,40 +52,28 @@ export default function Les06() {
         <ol className={styles.infoList}>
           <li>Schrijf de twee TODO's hierboven uit.</li>
           <li>
-            Klik een paar keer snel op de knop en let op dat er geen
-            "opstapeling" van animaties ontstaat en alles netjes blijft
-            werken.
+            Klik een paar keer snel op de knop en let op dat er geen "opstapeling" van animaties ontstaat en alles
+            netjes blijft werken.
           </li>
         </ol>
 
         <h2 className={styles.infoHeading}>Uitleg</h2>
         <p>
-          Waarom niet gewoon <code>useEffect</code>? Dat werkt ook, maar
-          dan moet je zelf alle GSAP-animaties opruimen bij unmount,
-          rekening houden met React's StrictMode, en een{" "}
-          <code>gsap.context()</code> gebruiken om alleen jouw animaties op
-          te ruimen. <code>useGSAP()</code> (gemaakt door het GSAP-team
-          zelf) regelt dit automatisch.
+          Waarom niet gewoon <code>useEffect</code>? Dat werkt ook, maar dan moet je zelf alle GSAP-animaties opruimen
+          bij unmount, rekening houden met React's StrictMode, en een <code>gsap.context()</code> gebruiken om alleen
+          jouw animaties op te ruimen. <code>useGSAP()</code> (gemaakt door het GSAP-team zelf) regelt dit automatisch.
         </p>
         <p>
-          De <code>scope</code>-optie zorgt dat je binnen de callback een
-          simpele CSS-selector zoals <code>".box"</code> kan gebruiken in
-          plaats van losse refs per element, want GSAP zoekt dan
-          automatisch alleen binnen het scope-element.
+          De <code>scope</code>-optie zorgt dat je binnen de callback een simpele CSS-selector zoals <code>".box"</code>{" "}
+          kan gebruiken in plaats van losse refs per element, want GSAP zoekt dan automatisch alleen binnen het
+          scope-element.
         </p>
         <p>
-          De <code>dependencies</code>-array werkt net als bij{" "}
-          <code>useEffect</code>: een lege array betekent "alleen bij
-          mount", een array met een waarde erin betekent "opnieuw
-          uitvoeren als die waarde verandert".
+          De <code>dependencies</code>-array werkt net als bij <code>useEffect</code>: een lege array betekent "alleen
+          bij mount", een array met een waarde erin betekent "opnieuw uitvoeren als die waarde verandert".
         </p>
 
-        <a
-          className={styles.docsLink}
-          href="https://gsap.com/resources/React"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a className={styles.docsLink} href="https://gsap.com/resources/React" target="_blank" rel="noreferrer">
           Documentatie: GSAP + React →
         </a>
       </section>
@@ -81,10 +85,7 @@ export default function Les06() {
 
         <div className={styles.counterRow}>
           <span className={`${styles.counter} counter`}>{count}</span>
-          <button
-            className={styles.button}
-            onClick={() => setCount((c) => c + 1)}
-          >
+          <button className={styles.button} onClick={() => setCount((c) => c + 1)}>
             +1 (opnieuw animeren)
           </button>
         </div>
