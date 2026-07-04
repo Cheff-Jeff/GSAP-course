@@ -16,7 +16,20 @@ export default function Les05() {
   const refs = useRef<Array<HTMLDivElement | null>>([]);
 
   const play = () => {
-    EASES.forEach((item, i) => {
+    EASES.forEach((item, index) => {
+      gsap.fromTo(
+        refs.current[index],
+        {
+          x: 0,
+        },
+        {
+          x: 400,
+          duration: 1.2,
+          ease: item.ease,
+          overwrite: true,
+        },
+      );
+
       // TODO: gebruik gsap.fromTo() op refs.current[i] met:
       //   start: { x: 0 }
       //   eind:  { x: 400, duration: 1.2, ease: item.ease, overwrite: true }
@@ -35,22 +48,19 @@ export default function Les05() {
         <ol className={styles.infoList}>
           <li>Schrijf de TODO in de "play"-functie hierboven uit.</li>
           <li>
-            Klik op "Speel af" en let goed op hoe elk van de vijf balken
-            beweegt, niet alleen dát ze bewegen. Ze hebben allemaal
-            dezelfde duration en afstand, alleen de ease verschilt.
+            Klik op "Speel af" en let goed op hoe elk van de vijf balken beweegt, niet alleen dát ze bewegen. Ze hebben
+            allemaal dezelfde duration en afstand, alleen de ease verschilt.
           </li>
           <li>
-            Verander bij één van de balken de ease-waarde in iets uit de
-            GSAP ease-visualizer (link hieronder) en kijk of je het
-            verschil voelt.
+            Verander bij één van de balken de ease-waarde in iets uit de GSAP ease-visualizer (link hieronder) en kijk
+            of je het verschil voelt.
           </li>
         </ol>
 
         <h2 className={styles.infoHeading}>Uitleg</h2>
         <p>
-          "Ease" (easing) bepaalt de snelheidscurve van een animatie:
-          begint hij langzaam en versnelt hij? Of juist andersom? Schiet
-          hij voorbij zijn doel en veert hij terug?
+          "Ease" (easing) bepaalt de snelheidscurve van een animatie: begint hij langzaam en versnelt hij? Of juist
+          andersom? Schiet hij voorbij zijn doel en veert hij terug?
         </p>
         <p>Veelgebruikte eases:</p>
         <ul className={styles.infoList}>
@@ -64,20 +74,14 @@ export default function Les05() {
             <code>power2.in</code> → rustig starten, hard versnellen
           </li>
           <li>
-            <code>back.out(1.7)</code> → schiet voorbij het doel en veert
-            terug
+            <code>back.out(1.7)</code> → schiet voorbij het doel en veert terug
           </li>
           <li>
             <code>bounce.out</code> → stuitert als een bal
           </li>
         </ul>
 
-        <a
-          className={styles.docsLink}
-          href="https://gsap.com/docs/v3/Eases"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a className={styles.docsLink} href="https://gsap.com/docs/v3/Eases" target="_blank" rel="noreferrer">
           Interactieve ease-visualizer (documentatie) →
         </a>
       </section>
