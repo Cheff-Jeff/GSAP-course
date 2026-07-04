@@ -1,65 +1,99 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import styles from "./page.module.css";
+
+const LESSEN = [
+  {
+    nummer: "01",
+    slug: "/les01",
+    titel: "Eerste tween",
+    beschrijving: "gsap.to() — je allereerste animatie, refs en basissyntax.",
+  },
+  {
+    nummer: "02",
+    slug: "/les02",
+    titel: "from() en fromTo()",
+    beschrijving: "Inkom-animaties: vanuit een startwaarde naar de normale staat.",
+  },
+  {
+    nummer: "03",
+    slug: "/les03",
+    titel: "Timelines",
+    beschrijving: "Meerdere animaties na elkaar of overlappend laten spelen.",
+  },
+  {
+    nummer: "04",
+    slug: "/les04",
+    titel: "Stagger",
+    beschrijving: "Meerdere elementen met een kleine vertraging animeren.",
+  },
+  {
+    nummer: "05",
+    slug: "/les05",
+    titel: "Easing",
+    beschrijving: 'Het "gevoel" van een animatie sturen met snelheidscurves.',
+  },
+  {
+    nummer: "06",
+    slug: "/les06",
+    titel: "useGSAP() hook",
+    beschrijving: "De officiële, veilige manier om GSAP in React te gebruiken.",
+  },
+  {
+    nummer: "07",
+    slug: "/les07",
+    titel: "ScrollTrigger basis",
+    beschrijving: "Animaties starten op basis van scrollpositie.",
+  },
+  {
+    nummer: "08",
+    slug: "/les08",
+    titel: "ScrollTrigger scrub & pin",
+    beschrijving: "Animatie koppelen aan scrollsnelheid, elementen vastzetten.",
+  },
+  {
+    nummer: "09",
+    slug: "/les09",
+    titel: "Hover interacties",
+    beschrijving: "Animaties op basis van muisgebeurtenissen.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className={styles.page}>
+      <header className={styles.hero}>
+        <p className={styles.eyebrow}>GSAP leertraject</p>
+        <h1 className={styles.title}>Leer GSAP, les voor les</h1>
+        <p className={styles.intro}>
+          Negen oefeningen die je van nul meenemen naar scroll-gestuurde animaties. Elke les legt op de pagina zelf uit
+          wat je gaat doen en welke GSAP-methode je nodig hebt — de code zelf schrijf je zelf, met TODO's als houvast.
+          Loop je vast, dan staat er in elke lesmap een <code>oplossing.tsx</code> om te controleren.
+        </p>
+        <p className={styles.introSub}>Volg de lessen in volgorde: elke les bouwt voort op een begrip uit de vorige.</p>
+      </header>
+
+      <ol className={styles.list}>
+        {LESSEN.map((les) => (
+          <li key={les.nummer} className={styles.item}>
+            <Link href={les.slug} className={styles.link}>
+              <span className={styles.nummer}>{les.nummer}</span>
+              <span className={styles.body}>
+                <span className={styles.itemTitle}>{les.titel}</span>
+                <span className={styles.itemDesc}>{les.beschrijving}</span>
+              </span>
+              <span className={styles.arrow}>→</span>
+            </Link>
+          </li>
+        ))}
+      </ol>
+
+      <footer className={styles.footer}>
+        <p>
+          Installeer eerst de dependencies: <code>npm install gsap @gsap/react</code>
+        </p>
+      </footer>
+    </main>
   );
 }

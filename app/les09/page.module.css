@@ -1,0 +1,88 @@
+.page {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: #0f1115;
+  color: #f2f2f2;
+  font-family: system-ui, sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  color: #a0a0a8;
+  margin-bottom: 3rem;
+}
+
+.row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 160px;
+  height: 200px;
+  border-radius: 16px;
+  background: #1c1f27;
+  border: 1px solid #2a2e38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #f2f2f2;
+  cursor: pointer;
+}
+
+.info {
+  max-width: 640px;
+  background: #171a21;
+  border: 1px solid #2a2e38;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  color: #d0d0d6;
+}
+
+.infoHeading {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5da9ff;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.infoHeading:first-child {
+  margin-top: 0;
+}
+
+.infoList {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.infoList li {
+  margin-bottom: 0.4rem;
+}
+
+.info code {
+  background: #232733;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.docsLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #5da9ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.docsLink:hover {
+  text-decoration: underline;
+}

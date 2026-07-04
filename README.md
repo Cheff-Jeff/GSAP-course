@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GSAP leertraject voor Next.js — van nul naar ScrollTrigger
 
-## Getting Started
+Dit is een reeks losse oefenpagina's. Elke les is een eigen map met een
+`page.tsx` en `page.module.css`. Kopieer de map naar `app/(iets)/page.tsx`
+in jouw Next.js project, of hernoem de map naar bijvoorbeeld `app/les-01/`.
 
-First, run the development server:
+## Installatie (eenmalig)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install gsap @gsap/react
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`gsap` is de animatiebibliotheek zelf. `@gsap/react` geeft je de
+`useGSAP()` hook, de door GSAP zelf aanbevolen manier om GSAP in React te
+gebruiken (regelt automatisch cleanup, zie les 6). Documentatie:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- GSAP core: https://gsap.com/docs/v3/GSAP
+- React integratie: https://gsap.com/resources/React
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Alle pagina's zijn client components (`"use client"` bovenaan), want GSAP
+manipuleert de DOM en dat mag alleen in de browser, niet tijdens server
+rendering.
 
-## Learn More
+## Volgorde
 
-To learn more about Next.js, take a look at the following resources:
+| #   | Les                                                          | Wat je leert                                                |
+| --- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+| 1   | Eerste tween (`les-01-eerste-tween`)                         | `gsap.to()`, refs, basisyntax                               |
+| 2   | `from()` / `fromTo()` (`les-02-from-fromto`)                 | Animeren vanuit een startwaarde                             |
+| 3   | Timelines (`les-03-timeline`)                                | Meerdere animaties na elkaar / overlappend                  |
+| 4   | Stagger (`les-04-stagger`)                                   | Meerdere elementen met vertraging animeren                  |
+| 5   | Easing (`les-05-easing`)                                     | Het "gevoel" van een animatie sturen                        |
+| 6   | `useGSAP()` hook (`les-06-useGSAP-hook`)                     | De juiste, veilige manier in React (context + cleanup)      |
+| 7   | ScrollTrigger basis (`les-07-scrolltrigger-basis`)           | Animeren op basis van scrollpositie                         |
+| 8   | ScrollTrigger scrub & pin (`les-08-scrolltrigger-scrub-pin`) | Animatie koppelen aan scroll-snelheid, elementen vastzetten |
+| 9   | Hover interacties (`les-09-hover-interacties`)               | Animaties op muisinteractie, meerdere refs beheren          |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Doe ze in deze volgorde: elke les bouwt voort op begrippen uit de vorige.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Hoe te gebruiken
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+0. run `npm run dev` in je project, zodat de Next.js dev server draait.
+1. Lees eerst het commentaarblok bovenaan `page.tsx` — daar staat de opdracht
+   en uitleg.
+2. Kijk naar de werkende code eronder.
+3. Verander zelf iets (duur, easing, delay, kleur) en kijk wat er gebeurt.
+   Dat is de snelste manier om GSAP te leren aanvoelen.
+4. Volg de docs-link in de comment voor de volledige API van de gebruikte
+   methode.
