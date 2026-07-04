@@ -37,7 +37,6 @@ export default function VideoScroll() {
         {
           currentTime: videoRef.current.duration - 0.5,
           ease: "none",
-          snap: { currentTime: 1 / 24 },
         },
       );
     };
