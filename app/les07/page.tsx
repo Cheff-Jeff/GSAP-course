@@ -23,6 +23,18 @@ export default function Les07() {
       const sections = gsap.utils.toArray<HTMLElement>(".section");
 
       sections.forEach((section) => {
+        gsap.from(section, {
+          opacity: 0,
+          y: 120,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 90%",
+            end: "bottom center",
+            scrub: true,
+            toggleActions: "play reverse play reverse",
+          },
+        });
         // TODO: animeer elke "section" met gsap.from():
         //   opacity: 0, y: 60, duration: 0.8
         // en geef een scrollTrigger object mee met:
@@ -31,7 +43,7 @@ export default function Les07() {
         //   toggleActions: "play none none reverse"
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -44,20 +56,18 @@ export default function Les07() {
           <li>Schrijf de TODO in de forEach hierboven uit.</li>
           <li>Scroll rustig naar beneden door de pagina.</li>
           <li>
-            Elke sectie zou pas moeten animeren (fade + omhoog schuiven) op
-            het moment dat hij het scherm binnenkomt.
+            Elke sectie zou pas moeten animeren (fade + omhoog schuiven) op het moment dat hij het scherm binnenkomt.
           </li>
           <li>
-            Scroll weer omhoog: de secties zouden moeten resetten en
-            opnieuw afspelen. Dat komt door <code>toggleActions</code>.
+            Scroll weer omhoog: de secties zouden moeten resetten en opnieuw afspelen. Dat komt door{" "}
+            <code>toggleActions</code>.
           </li>
         </ol>
 
         <h2 className={styles.infoHeading}>Uitleg</h2>
         <p>
-          ScrollTrigger is een GSAP-plugin die een animatie koppelt aan de
-          scrollpositie van de pagina in plaats van aan het laden van de
-          pagina.
+          ScrollTrigger is een GSAP-plugin die een animatie koppelt aan de scrollpositie van de pagina in plaats van aan
+          het laden van de pagina.
         </p>
         <p>De belangrijkste opties in een scrollTrigger-object:</p>
         <ul className={styles.infoList}>
@@ -65,13 +75,11 @@ export default function Les07() {
             <code>trigger</code> — welk element de trigger bepaalt
           </li>
           <li>
-            <code>start: "top 80%"</code> — wanneer de bovenkant van het
-            trigger-element 80% van de schermhoogte bereikt
+            <code>start: "top 80%"</code> — wanneer de bovenkant van het trigger-element 80% van de schermhoogte bereikt
           </li>
           <li>
-            <code>toggleActions: "play none none reverse"</code> — speel af
-            bij binnenkomst, doe niets bij verlaten, doe niets bij
-            terug-in-beeld-komen, keer om bij terugscrollen
+            <code>toggleActions: "play none none reverse"</code> — speel af bij binnenkomst, doe niets bij verlaten, doe
+            niets bij terug-in-beeld-komen, keer om bij terugscrollen
           </li>
         </ul>
 
