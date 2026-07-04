@@ -15,6 +15,17 @@ export default function Les08() {
 
   useGSAP(
     () => {
+      gsap.to(progressRef.current, {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: pinnedRef.current,
+          start: "top top",
+          end: "+=800",
+          pin: true,
+          scrub: true,
+        },
+      });
       // TODO: gebruik gsap.to() op progressRef.current met:
       //   width: "100%"
       //   ease: "none"   <- bij scrub altijd "none" gebruiken
@@ -25,7 +36,7 @@ export default function Les08() {
       //   pin: true
       //   scrub: true
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -37,35 +48,28 @@ export default function Les08() {
         <ol className={styles.infoList}>
           <li>Schrijf de TODO hierboven uit.</li>
           <li>
-            Scroll door de paarse sectie: die zou moeten vastzitten
-            (gepind) terwijl de voortgangsbalk vult op basis van hoeveel je
-            scrolt.
+            Scroll door de paarse sectie: die zou moeten vastzitten (gepind) terwijl de voortgangsbalk vult op basis van
+            hoeveel je scrolt.
           </li>
           <li>
-            Verander <code>scrub: true</code> eens naar <code>scrub: 1</code>{" "}
-            en voel het verschil.
+            Verander <code>scrub: true</code> eens naar <code>scrub: 1</code> en voel het verschil.
           </li>
           <li>
-            Verander <code>end: "+=800"</code> naar bijvoorbeeld{" "}
-            <code>"+=1600"</code> om de sectie langer te maken.
+            Verander <code>end: "+=800"</code> naar bijvoorbeeld <code>"+=1600"</code> om de sectie langer te maken.
           </li>
         </ol>
 
         <h2 className={styles.infoHeading}>Uitleg</h2>
         <p>
-          <code>scrub</code> koppelt de voortgang van de animatie direct
-          aan je scrollpositie in plaats van aan tijd (duration).{" "}
-          <code>scrub: true</code> is exact synchroon, een getal zoals{" "}
-          <code>scrub: 1</code> geeft een vloeiende vertraging van dat
-          aantal seconden.
+          <code>scrub</code> koppelt de voortgang van de animatie direct aan je scrollpositie in plaats van aan tijd
+          (duration). <code>scrub: true</code> is exact synchroon, een getal zoals <code>scrub: 1</code> geeft een
+          vloeiende vertraging van dat aantal seconden.
         </p>
         <p>
-          <code>pin: true</code> zet het trigger-element vast op het
-          scherm zolang de scrollTrigger actief is.
+          <code>pin: true</code> zet het trigger-element vast op het scherm zolang de scrollTrigger actief is.
         </p>
         <p>
-          <code>end: "+=800"</code> bepaalt hoeveel pixels scroll de
-          pin/scrub actief blijft.
+          <code>end: "+=800"</code> bepaalt hoeveel pixels scroll de pin/scrub actief blijft.
         </p>
 
         <a
@@ -81,9 +85,7 @@ export default function Les08() {
       <div className={styles.spacer} />
 
       <div ref={pinnedRef} className={styles.pinned}>
-        <p className={styles.pinnedLabel}>
-          Dit vlak blijft vast staan terwijl je scrolt
-        </p>
+        <p className={styles.pinnedLabel}>Dit vlak blijft vast staan terwijl je scrolt</p>
         <div className={styles.progressTrack}>
           <div ref={progressRef} className={styles.progressFill} />
         </div>
